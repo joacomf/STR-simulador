@@ -2,9 +2,16 @@ require 'rspec'
 require_relative '../model/procesador'
 
 describe Procesador do
-  it 'deberia crearse sin tareas' do
-    procesador = described_class.new
+  let(:procesador) { described_class.new }
 
-    expect(procesador.tareas).to eq 0
+  it 'deberia crearse sin tareas' do
+    expect(procesador.cantidad_tareas).to eq 0
+  end
+
+  it 'deberia tener 1 tarea registrada al asignarle 1 tarea' do
+    tarea = Tarea.new(10)
+    procesador.tarea(tarea)
+
+    expect(procesador.cantidad_tareas).to eq 1
   end
 end
