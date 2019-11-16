@@ -2,6 +2,7 @@ require 'rspec'
 require_relative '../model/tarea'
 
 describe Tarea do
+  # Tarea(inicio, tiempo, periodo, prioridad, deadline)
   subject(:tarea) { described_class.new(0, 10, 30, 5, 20) }
 
   it 'deberia crearse recibiendo inicio' do
@@ -16,6 +17,10 @@ describe Tarea do
     expect(tarea.periodo).to eq(30)
   end
 
+  it 'deberia lanzar excepcion si periodo es menor que tiempo' do
+    expect { described_class.new(0, 30, 10, 5, 40) }.to raise_exception StandardError
+  end
+
   it 'deberia crearse recibiendo prioridad' do
     expect(tarea.prioridad).to eq(5)
   end
@@ -25,6 +30,6 @@ describe Tarea do
   end
 
   it 'deberia lanzar excepcion si deadline es menor que tiempo' do
-    expect { tarea_deadline_menor_que_tiempo.new(0, 10, 30, 5, 2) }.to raise_exception StandardError
+    expect { described_class.new(0, 10, 30, 5, 2) }.to raise_exception StandardError
   end
 end
