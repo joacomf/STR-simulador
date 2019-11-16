@@ -19,4 +19,8 @@ describe Tarea do
   it 'deberia crearse recibiendo deadline' do
     expect(tarea.deadline).to eq(20)
   end
+
+  it 'deberia lanzar excepcion si deadline es menor que tiempo' do
+    expect { tarea_deadline_menor_que_tiempo.new(0, 10, 5, 2) }.to raise_exception StandardError
+  end
 end
