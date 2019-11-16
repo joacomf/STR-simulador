@@ -3,7 +3,7 @@ require_relative '../model/procesador'
 
 describe Procesador do
   let(:procesador) { described_class.new }
-  let(:tarea) { Tarea.new(0, 10, 5, 20) }
+  let(:tarea) { Tarea.new(0, 10, 30, 5, 20) }
 
   it 'deberia crearse sin tareas' do
     expect(procesador.cantidad_tareas).to eq 0
