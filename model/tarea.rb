@@ -1,7 +1,8 @@
 class Tarea
-  attr_accessor :tiempo
+  attr_accessor :tiempo, :inicio
 
-  def initialize(tiempo)
+  def initialize(inicio, tiempo)
+    @inicio = inicio
     @tiempo = tiempo
   end
 end

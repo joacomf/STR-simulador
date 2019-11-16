@@ -9,14 +9,14 @@ describe Procesador do
   end
 
   it 'deberia tener 1 tarea registrada al asignarle 1 tarea' do
-    tarea = Tarea.new(10)
+    tarea = Tarea.new(0, 10)
     procesador.tarea(tarea)
 
     expect(procesador.cantidad_tareas).to eq 1
   end
 
   it 'deberia tener 2 tareas registradas al asignarle 2 tareas' do
-    tarea = Tarea.new(10)
+    tarea = Tarea.new(0, 10)
     procesador.tarea(tarea)
     procesador.tarea(tarea)
 
