@@ -11,7 +11,7 @@ class Procesador
     @tareas << tarea
   end
 
-  def cantidad_tareas
+  def pendientes
     @tareas.count
   end
 end
