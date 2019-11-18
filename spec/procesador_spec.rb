@@ -32,4 +32,25 @@ describe Procesador do
       expect(procesador.pendientes).to eq 4
     end
   end
+
+  describe 'con multiples tareas al procesar' do
+    before(:each) do
+      tarea_a = Tarea.new(tiempo: 10)
+      tarea_b = Tarea.new(tiempo: 1)
+      tarea_c = Tarea.new(tiempo: 5)
+      tarea_d = Tarea.new(tiempo: 8)
+
+      procesador.tarea(tarea_a)
+      procesador.tarea(tarea_b)
+      procesador.tarea(tarea_c)
+      procesador.tarea(tarea_d)
+    end
+
+    it 'deberia tener 4 tareas procesadas' do
+      procesador.procesar
+
+      expect(procesador.pendientes).to eq 0
+      expect(procesador.cantidad_procesadas).to eq 4
+    end
+  end
 end
