@@ -3,7 +3,7 @@ require_relative '../model/procesador'
 
 describe Procesador do
   let(:procesador) { described_class.new }
-  let(:tarea) { Tarea.new(0, 10, 30, 5, 20) }
+  let(:tarea) { Tarea.new(10, 30, 5, 20) }
 
   it 'deberia crearse sin tareas pendientes' do
     expect(procesador.pendientes).to eq 0
@@ -17,10 +17,10 @@ describe Procesador do
 
   describe 'con multiples tareas' do
     before(:each) do
-      tarea_a = Tarea.new(tiempo: 10)
-      tarea_b = Tarea.new(tiempo: 1)
-      tarea_c = Tarea.new(tiempo: 5)
-      tarea_d = Tarea.new(tiempo: 8)
+      tarea_a = Tarea.new(10)
+      tarea_b = Tarea.new(1)
+      tarea_c = Tarea.new(5)
+      tarea_d = Tarea.new(8)
 
       procesador.tarea(tarea_a)
       procesador.tarea(tarea_b)
@@ -34,11 +34,13 @@ describe Procesador do
   end
 
   describe 'con multiples tareas al procesar' do
+    let(:procesador) { described_class.new }
+
     before(:each) do
-      tarea_a = Tarea.new(tiempo: 10)
-      tarea_b = Tarea.new(tiempo: 1)
-      tarea_c = Tarea.new(tiempo: 5)
-      tarea_d = Tarea.new(tiempo: 8)
+      tarea_a = Tarea.new(10)
+      tarea_b = Tarea.new(1)
+      tarea_c = Tarea.new(5)
+      tarea_d = Tarea.new(8)
 
       procesador.tarea(tarea_a)
       procesador.tarea(tarea_b)

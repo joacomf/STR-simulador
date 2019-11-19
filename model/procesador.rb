@@ -18,7 +18,10 @@ class Procesador
 
   def procesar
     tareas_por_procesar = @tareas.clone
-    tareas_por_procesar.each do
+    tareas_por_procesar.each_with_index do |tarea, indice|
+      tarea.tiempo.times do
+        puts 'Ejecución de tarea ' + indice.to_s
+      end
       @procesadas << @tareas.shift
     end
   end
