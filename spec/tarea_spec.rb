@@ -55,5 +55,10 @@ describe Tarea do
       tarea.reloj = Reloj.new(20)
       expect { tarea.ejecutar }.to raise_exception StandardError
     end
+
+    it 'deberia esperar una excepcion si se ejecuta una tarea terminada' do
+      tarea.pendiente = 0
+      expect { tarea.ejecutar }.to raise_exception StandardError
+    end
   end
 end
