@@ -12,4 +12,11 @@ describe Reloj do
     reloj = described_class.new(15)
     expect(reloj.tiempo).to eq 15
   end
+
+  describe 'incrementar' do
+    it 'deberia aumentar una unidad de tiempo' do
+      reloj.incrementar
+      expect(reloj.tiempo).to eq 1
+    end
+  end
 end
