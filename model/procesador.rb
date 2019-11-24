@@ -1,11 +1,12 @@
 require_relative './tarea'
+require_relative './reloj'
 
 class Procesador
   attr_accessor :tareas, :reloj, :ejecutadas
 
   def initialize
     @tareas = []
-    @reloj = 0
+    @reloj = Reloj.new
     @ejecutadas = 0
   end
 
@@ -20,6 +21,6 @@ class Procesador
       end
       @ejecutadas += 1
     end
-    @reloj += 1
+    @reloj.incrementar
   end
 end

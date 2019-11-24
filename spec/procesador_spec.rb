@@ -7,7 +7,7 @@ describe Procesador do
   let(:tarea) { Tarea.new(10, 30, 5, 20) }
 
   it 'deberia crearse con reloj en 0' do
-    expect(procesador.reloj).to eq 0
+    expect(procesador.reloj.tiempo).to eq 0
   end
 
   it 'deberia tener 1 tarea registrada al asignarle 1 tarea' do
@@ -63,7 +63,7 @@ describe Procesador do
       procesador.tarea(tarea)
       procesador.procesar
 
-      expect(procesador.reloj).to eq 1
+      expect(procesador.reloj.tiempo).to eq 1
     end
   end
 end
