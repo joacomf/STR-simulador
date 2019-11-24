@@ -3,33 +3,28 @@ require_relative './tarea'
 require_relative './reloj'
 
 class Programador
-  attr_accessor :tareas, :ejecutadas
+  attr_accessor :tareas, :ejecutadas, :procesador
 
   def initialize(procesador)
     @tareas = []
-    @procesadores = []
-    @procesadores << procesador
+    @procesador = procesador
     @ejecutadas = 0
   end
 
-  def procesadores
-    @procesadores.size
-  end
-
-  def encolar(procesador, tarea)
+  def encolar(tarea)
     tarea.reloj = procesador.reloj
     @tareas << tarea
   end
 
-  def procesar(_procesador, tarea)
+  def procesar(tarea)
     tarea.tiempo.times do
-      tarea.ejecutar
+      @procesador.procesar(tarea)
     end
   end
 
   def simular
     @tareas.each do |tarea|
-      procesar(@procesadores[0], tarea)
+      procesar(tarea)
       @ejecutadas += 1
     end
   end
