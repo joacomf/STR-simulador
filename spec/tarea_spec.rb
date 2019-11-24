@@ -3,10 +3,10 @@ require_relative '../model/tarea'
 
 describe Tarea do
   # Tarea(inicio, tiempo, periodo, prioridad, deadline)
-  subject(:tarea) { described_class.new(10, 30, 5, 20) }
+  subject(:tarea) { described_class.new(5, 30, 5, 20) }
 
   it 'deberia crearse recibiendo tiempo' do
-    expect(tarea.tiempo).to eq(10)
+    expect(tarea.tiempo).to eq(5)
   end
 
   it 'deberia crearse recibiendo periodo' do
@@ -27,5 +27,12 @@ describe Tarea do
 
   it 'deberia lanzar excepcion si deadline es menor que tiempo' do
     expect { described_class.new(10, 30, 5, 2) }.to raise_exception StandardError
+  end
+
+  it 'deberia tener 1 ejecutado de 5 tiempos al ejecutar' do
+    tarea.ejecutar
+
+    expect(tarea.ejecutado).to eq 1
+    expect(tarea.tiempo).to eq 5
   end
 end
