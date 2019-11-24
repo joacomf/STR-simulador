@@ -1,11 +1,12 @@
 require_relative './tarea'
 
 class Procesador
-  attr_accessor :tareas, :procesadas
+  attr_accessor :tareas, :procesadas, :reloj
 
   def initialize
     @tareas = []
     @procesadas = []
+    @reloj = 0
   end
 
   def tarea(tarea)
@@ -24,6 +25,7 @@ class Procesador
       end
       @procesadas << @tareas.shift
     end
+    @reloj += 1
   end
 
   def cantidad_procesadas

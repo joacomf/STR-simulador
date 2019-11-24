@@ -5,6 +5,10 @@ describe Procesador do
   let(:procesador) { described_class.new }
   let(:tarea) { Tarea.new(10, 30, 5, 20) }
 
+  it 'deberia crearse con reloj en 0' do
+    expect(procesador.reloj).to eq 0
+  end
+
   it 'deberia crearse sin tareas pendientes' do
     expect(procesador.pendientes).to eq 0
   end
@@ -53,6 +57,17 @@ describe Procesador do
 
       expect(procesador.pendientes).to eq 0
       expect(procesador.cantidad_procesadas).to eq 4
+    end
+  end
+
+  describe 'con un reloj' do
+    it 'deberia avanzar un tiempo al procesar 1 iteración' do
+      tarea = Tarea.new(1)
+
+      procesador.tarea(tarea)
+      procesador.procesar
+
+      expect(procesador.reloj).to eq 1
     end
   end
 end
