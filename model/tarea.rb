@@ -1,5 +1,5 @@
 class Tarea
-  attr_accessor :tiempo, :inicio, :periodo, :prioridad, :deadline, :pendiente
+  attr_accessor :inicio, :tiempo, :periodo, :prioridad, :deadline, :pendiente
 
   def initialize(tiempo = 0, periodo = nil, prioridad = nil, deadline = nil)
     raise StandardError, 'Deadline debe ser mayor o igual a Tiempo' if !deadline.nil? && tiempo > deadline

@@ -2,7 +2,7 @@ require 'rspec'
 require_relative '../model/tarea'
 
 describe Tarea do
-  # Tarea(inicio, tiempo, periodo, prioridad, deadline)
+  # Tarea(tiempo, periodo, prioridad, deadline)
   subject(:tarea) { described_class.new(5, 30, 5, 20) }
 
   it 'deberia crearse recibiendo tiempo' do
