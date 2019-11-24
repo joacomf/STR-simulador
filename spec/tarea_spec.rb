@@ -15,7 +15,7 @@ describe Tarea do
   end
 
   it 'deberia lanzar excepcion si periodo es menor que tiempo' do
-    expect { described_class.new(30, 10, 5, 40) }.to raise_exception StandardError
+    expect { described_class.new(30, 10, 5, 40) }.to raise_exception TareaInitializeError
   end
 
   it 'deberia crearse recibiendo prioridad' do
