@@ -31,7 +31,7 @@ describe Tarea do
   end
 
   it 'deberia lanzar excepcion si deadline es menor que tiempo' do
-    expect { described_class.new(10, 30, 5, 2) }.to raise_exception StandardError
+    expect { described_class.new(10, 30, 5, 2) }.to raise_exception TareaInitializeError
   end
 
   describe 'con ejecución' do
