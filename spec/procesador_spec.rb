@@ -3,6 +3,7 @@ require_relative '../model/procesador'
 
 describe Procesador do
   let(:procesador) { described_class.new }
+  # Tarea(tiempo, periodo, prioridad, deadline)
   let(:tarea) { Tarea.new(10, 30, 5, 20) }
 
   it 'deberia crearse con reloj en 0' do
