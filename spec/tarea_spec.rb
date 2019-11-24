@@ -29,10 +29,10 @@ describe Tarea do
     expect { described_class.new(10, 30, 5, 2) }.to raise_exception StandardError
   end
 
-  it 'deberia tener 1 ejecutado de 5 tiempos al ejecutar' do
+  it 'deberia tener 4 pendiente de 5 tiempos al ejecutar 1 vez' do
     tarea.ejecutar
 
-    expect(tarea.ejecutado).to eq 1
+    expect(tarea.pendiente).to eq 4
     expect(tarea.tiempo).to eq 5
   end
 end
