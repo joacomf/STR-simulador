@@ -18,10 +18,10 @@ describe Procesador do
 
   describe 'con multiples tareas' do
     before(:each) do
-      tarea_a = Tarea.new(10)
-      tarea_b = Tarea.new(1)
-      tarea_c = Tarea.new(5)
-      tarea_d = Tarea.new(8)
+      tarea_a = Tarea.new(10, 12)
+      tarea_b = Tarea.new(1, 5)
+      tarea_c = Tarea.new(5, 5)
+      tarea_d = Tarea.new(8, 10)
 
       procesador.tarea(tarea_a)
       procesador.tarea(tarea_b)
@@ -38,10 +38,10 @@ describe Procesador do
     let(:procesador) { described_class.new }
 
     before(:each) do
-      tarea_a = Tarea.new(10)
-      tarea_b = Tarea.new(1)
-      tarea_c = Tarea.new(5)
-      tarea_d = Tarea.new(8)
+      tarea_a = Tarea.new(10, 12)
+      tarea_b = Tarea.new(1, 5)
+      tarea_c = Tarea.new(5, 5)
+      tarea_d = Tarea.new(8, 10)
 
       procesador.tarea(tarea_a)
       procesador.tarea(tarea_b)
@@ -58,7 +58,7 @@ describe Procesador do
 
   describe 'con un reloj' do
     it 'deberia avanzar un tiempo al procesar 1 iteración' do
-      tarea = Tarea.new(1)
+      tarea = Tarea.new(1, 3)
 
       procesador.tarea(tarea)
       procesador.procesar

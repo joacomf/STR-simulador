@@ -11,13 +11,14 @@ class Procesador
   end
 
   def tarea(tarea)
+    tarea.reloj = @reloj
     @tareas << tarea
   end
 
   def procesar
-    @tareas.each_with_index do |tarea, indice|
+    @tareas.each_with_index do |tarea, _indice|
       tarea.tiempo.times do
-        puts 'Ejecución de tarea ' + indice.to_s
+        tarea.ejecutar
       end
       @ejecutadas += 1
     end
