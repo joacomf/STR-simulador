@@ -39,6 +39,15 @@ describe Tarea do
     expect { described_class.new(tiempo: 10, periodo: 30, deadline: 2) }.to raise_exception TareaInitializeError
   end
 
+  it 'deberia tener registrada la cantidad de ciclos completados' do
+    tarea = described_class.new(tiempo: 1, periodo: 1, reloj: Reloj.new)
+
+    tarea.ejecutar
+    tarea.ejecutar
+
+    expect(tarea.ciclos_completados).to eq 2
+  end
+
   describe 'al ejecutar' do
     it 'deberia tener 4 pendiente de 5 tiempos al ejecutar 1 vez' do
       tarea.ejecutar
