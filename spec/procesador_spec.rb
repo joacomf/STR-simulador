@@ -9,14 +9,10 @@ describe Procesador do
     expect(procesador.reloj).to eq 0
   end
 
-  it 'deberia crearse sin tareas pendientes' do
-    expect(procesador.pendientes).to eq 0
-  end
-
   it 'deberia tener 1 tarea registrada al asignarle 1 tarea' do
     procesador.tarea(tarea)
 
-    expect(procesador.pendientes).to eq 1
+    expect(procesador.tareas.count).to eq 1
   end
 
   describe 'con multiples tareas' do
@@ -32,8 +28,8 @@ describe Procesador do
       procesador.tarea(tarea_d)
     end
 
-    it 'deberia tener 4 tareas pendientes al asignarle 4 tareas' do
-      expect(procesador.pendientes).to eq 4
+    it 'deberia tener 4 tareas' do
+      expect(procesador.tareas.count).to eq 4
     end
   end
 
@@ -55,8 +51,7 @@ describe Procesador do
     it 'deberia tener 4 tareas procesadas' do
       procesador.procesar
 
-      expect(procesador.pendientes).to eq 0
-      expect(procesador.cantidad_procesadas).to eq 4
+      expect(procesador.ejecutadas).to eq 4
     end
   end
 
