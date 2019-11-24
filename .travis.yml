@@ -4,3 +4,5 @@ rvm:
 
 install:
   - gem install bundler -v 1.17.3
+
+script: "./build.sh"
