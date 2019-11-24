@@ -3,8 +3,7 @@ require_relative '../model/procesador'
 
 describe Procesador do
   let(:procesador) { described_class.new }
-  # Tarea(tiempo, periodo, prioridad, deadline)
-  let(:tarea) { Tarea.new(10, 30, 5, 20) }
+  let(:tarea) { Tarea.new(tiempo: 10, periodo: 30, deadline: 20) }
 
   it 'deberia crearse con reloj en 0' do
     expect(procesador.reloj.tiempo).to eq 0
@@ -18,10 +17,10 @@ describe Procesador do
 
   describe 'con multiples tareas' do
     before(:each) do
-      tarea_a = Tarea.new(10, 12)
-      tarea_b = Tarea.new(1, 5)
-      tarea_c = Tarea.new(5, 5)
-      tarea_d = Tarea.new(8, 10)
+      tarea_a = Tarea.new(tiempo: 10, periodo: 30, deadline: 20)
+      tarea_b = Tarea.new(tiempo: 10, periodo: 30, deadline: 20)
+      tarea_c = Tarea.new(tiempo: 10, periodo: 30, deadline: 20)
+      tarea_d = Tarea.new(tiempo: 10, periodo: 30, deadline: 20)
 
       procesador.tarea(tarea_a)
       procesador.tarea(tarea_b)
@@ -38,10 +37,10 @@ describe Procesador do
     let(:procesador) { described_class.new }
 
     before(:each) do
-      tarea_a = Tarea.new(10, 12)
-      tarea_b = Tarea.new(1, 5)
-      tarea_c = Tarea.new(5, 5)
-      tarea_d = Tarea.new(8, 10)
+      tarea_a = Tarea.new(tiempo: 10, periodo: 30, deadline: 20)
+      tarea_b = Tarea.new(tiempo: 10, periodo: 30, deadline: 20)
+      tarea_c = Tarea.new(tiempo: 10, periodo: 30, deadline: 20)
+      tarea_d = Tarea.new(tiempo: 10, periodo: 30, deadline: 20)
 
       procesador.tarea(tarea_a)
       procesador.tarea(tarea_b)
@@ -58,7 +57,7 @@ describe Procesador do
 
   describe 'con un reloj' do
     it 'deberia avanzar un tiempo al procesar 1 iteración' do
-      tarea = Tarea.new(1, 3)
+      tarea = Tarea.new(tiempo: 10, periodo: 30, deadline: 20)
 
       procesador.tarea(tarea)
       procesador.procesar

@@ -16,7 +16,7 @@ class Procesador
   end
 
   def procesar
-    @tareas.each_with_index do |tarea, _indice|
+    @tareas.each do |tarea|
       tarea.tiempo.times do
         tarea.ejecutar
       end

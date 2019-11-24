@@ -4,7 +4,7 @@ require_relative '../model/reloj'
 
 describe Tarea do
   # Tarea(tiempo, periodo, prioridad, deadline)
-  subject(:tarea) { described_class.new(5, 30, 5, 20, Reloj.new) }
+  subject(:tarea) { described_class.new(tiempo: 5, periodo: 30, prioridad: 5, deadline: 20, reloj: Reloj.new) }
 
   it 'deberia crearse recibiendo tiempo' do
     expect(tarea.tiempo).to eq(5)
@@ -15,7 +15,7 @@ describe Tarea do
   end
 
   it 'deberia lanzar excepcion si periodo es menor que tiempo' do
-    expect { described_class.new(30, 10, 5, 40) }.to raise_exception TareaInitializeError
+    expect { described_class.new(tiempo: 30, periodo: 10, prioridad: 5, deadline: 40) }.to raise_exception TareaInitializeError
   end
 
   it 'deberia crearse recibiendo prioridad' do
@@ -31,7 +31,7 @@ describe Tarea do
   end
 
   it 'deberia lanzar excepcion si deadline es menor que tiempo' do
-    expect { described_class.new(10, 30, 5, 2) }.to raise_exception TareaInitializeError
+    expect { described_class.new(tiempo: 10, periodo: 30, prioridad: 5, deadline: 2) }.to raise_exception TareaInitializeError
   end
 
   describe 'con ejecución' do
