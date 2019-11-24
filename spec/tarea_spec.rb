@@ -53,12 +53,12 @@ describe Tarea do
 
     it 'deberia esperar una excepcion si se ejecuta una tarea que llego al deadline' do
       tarea.reloj = Reloj.new(20)
-      expect { tarea.ejecutar }.to raise_exception StandardError
+      expect { tarea.ejecutar }.to raise_exception TareaEjecucionError
     end
 
     it 'deberia esperar una excepcion si se ejecuta una tarea terminada' do
       tarea.pendiente = 0
-      expect { tarea.ejecutar }.to raise_exception StandardError
+      expect { tarea.ejecutar }.to raise_exception TareaEjecucionError
     end
   end
 end
