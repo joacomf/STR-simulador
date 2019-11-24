@@ -1,9 +1,10 @@
 require 'rspec'
 require_relative '../model/tarea'
+require_relative '../model/reloj'
 
 describe Tarea do
   # Tarea(tiempo, periodo, prioridad, deadline)
-  subject(:tarea) { described_class.new(5, 30, 5, 20) }
+  subject(:tarea) { described_class.new(5, 30, 5, 20, Reloj.new) }
 
   it 'deberia crearse recibiendo tiempo' do
     expect(tarea.tiempo).to eq(5)
@@ -23,6 +24,10 @@ describe Tarea do
 
   it 'deberia crearse recibiendo deadline' do
     expect(tarea.deadline).to eq(20)
+  end
+
+  it 'deberia crearse recibiendo reloj' do
+    expect(tarea.reloj.tiempo).to eq(0)
   end
 
   it 'deberia lanzar excepcion si deadline es menor que tiempo' do
