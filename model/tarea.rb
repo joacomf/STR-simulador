@@ -14,6 +14,8 @@ class Tarea
   end
 
   def ejecutar
+    raise StandardError, 'La tarea llego al Deadline, no se puede ejecutar' if deadline <= reloj.tiempo
+
     @pendiente -= 1
   end
 end
