@@ -1,3 +1,5 @@
+require_relative './tarea'
+
 class Tarea
   attr_accessor :inicio, :tiempo, :periodo, :prioridad, :deadline, :pendiente, :reloj
 
@@ -18,5 +20,7 @@ class Tarea
     raise StandardError, 'La tarea llego al Deadline, no se puede ejecutar' if deadline <= reloj.tiempo
 
     @pendiente -= 1
+    unidades_de_tiempo_ejecutadas = @tiempo - @pendiente
+    Logger.ejecucion(@reloj.tiempo, unidades_de_tiempo_ejecutadas, tiempo)
   end
 end
