@@ -35,4 +35,13 @@ describe Tarea do
     expect(tarea.pendiente).to eq 4
     expect(tarea.tiempo).to eq 5
   end
+
+  it 'deberia tener 2 pendiente de 5 tiempos al ejecutar 3 veces' do
+    tarea.ejecutar
+    tarea.ejecutar
+    tarea.ejecutar
+
+    expect(tarea.pendiente).to eq 2
+    expect(tarea.tiempo).to eq 5
+  end
 end
