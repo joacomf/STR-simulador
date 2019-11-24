@@ -8,7 +8,11 @@ class Tarea
     raise StandardError, 'Periodo debe ser mayor o igual a Tiempo' if !periodo.nil? && tiempo > periodo
 
     @periodo = periodo
-    @deadline = deadline
+    @deadline = if deadline.nil?
+                  periodo
+                else
+                  deadline
+                end
     @prioridad = prioridad
     @tiempo = tiempo
     @pendiente = tiempo
