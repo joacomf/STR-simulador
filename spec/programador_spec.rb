@@ -64,7 +64,7 @@ describe Programador do
       programador.encolar(tarea_a)
       programador.encolar(tarea_b)
 
-      programador.simular(1)
+      programador.simular(5)
     end
 
     it 'deberia ejecutar NOP si la siguiente tarea no es ejecutable' do

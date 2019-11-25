@@ -8,8 +8,9 @@ class Programador
   def initialize(procesador)
     @tareas = []
     @procesador = procesador
+    @reloj = procesador.reloj
     @ejecutadas = 0
-    @nop = Nop.new(reloj: procesador.reloj)
+    @nop = Nop.new(reloj: @reloj)
   end
 
   def encolar(tarea)
@@ -25,7 +26,7 @@ class Programador
   end
 
   def simular(ejecuciones = 1)
-    ejecuciones.times.each do
+    while ejecuciones > @reloj.tiempo
       @tareas.each do |tarea|
         procesar(tarea)
         @ejecutadas += 1
