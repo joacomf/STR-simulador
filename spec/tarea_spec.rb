@@ -4,14 +4,15 @@ require_relative '../model/reloj'
 
 describe Tarea do
   # Tarea(tiempo, periodo, prioridad, deadline)
-  subject(:tarea) { described_class.new(tiempo: 5, periodo: 30, deadline: 20, reloj: Reloj.new) }
+  let(:reloj) {Reloj.new}
+  subject(:tarea) { described_class.new(tiempo: 5, periodo: 30, deadline: 20, reloj: reloj) }
 
   it 'deberia crearse recibiendo tiempo' do
     expect(tarea.tiempo).to eq(5)
   end
 
   it 'deberia tener tiempo de inicio 0 al no recibirlo' do
-    tarea = described_class.new(tiempo: 5, periodo: 5)
+    tarea = described_class.new(tiempo: 5, periodo: 5, reloj: reloj)
     expect(tarea.tiempo_inicio).to eq 0
   end
 
@@ -20,7 +21,7 @@ describe Tarea do
   end
 
   it 'deberia lanzar excepcion si periodo es menor que tiempo' do
-    expect { described_class.new(tiempo: 30, periodo: 10, deadline: 40) }.to raise_exception TareaInitializeError
+    expect { described_class.new(tiempo: 30, periodo: 10, deadline: 40, reloj: reloj) }.to raise_exception TareaInitializeError
   end
 
   it 'deberia crearse con prioridad 1' do
@@ -36,11 +37,11 @@ describe Tarea do
   end
 
   it 'deberia lanzar excepcion si deadline es menor que tiempo' do
-    expect { described_class.new(tiempo: 10, periodo: 30, deadline: 2) }.to raise_exception TareaInitializeError
+    expect { described_class.new(tiempo: 10, periodo: 30, deadline: 2, reloj: reloj) }.to raise_exception TareaInitializeError
   end
 
   it 'deberia tener registrada la cantidad de ciclos completados' do
-    tarea = described_class.new(tiempo: 1, periodo: 1, reloj: Reloj.new)
+    tarea = described_class.new(tiempo: 1, periodo: 1, reloj: reloj)
 
     2.times { tarea.ejecutar }
 
@@ -73,14 +74,14 @@ describe Tarea do
     end
 
     describe 'al finalizar de ejecutarse' do
-      let(:tarea) { described_class.new(tiempo: 3, periodo: 3, reloj: Reloj.new) }
+      let(:tarea) { described_class.new(tiempo: 3, periodo: 3, reloj: reloj) }
 
       before(:each) do
         3.times { tarea.ejecutar }
       end
 
       it 'deberia reiniciarse actualizando los valores de inicio' do
-        expect(tarea.tiempo_inicio).to eq 4
+        expect(tarea.tiempo_inicio).to eq 3
         expect(tarea.pendiente).to eq 3
       end
     end
