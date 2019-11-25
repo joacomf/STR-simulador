@@ -42,8 +42,7 @@ describe Tarea do
   it 'deberia tener registrada la cantidad de ciclos completados' do
     tarea = described_class.new(tiempo: 1, periodo: 1, reloj: Reloj.new)
 
-    tarea.ejecutar
-    tarea.ejecutar
+    2.times { tarea.ejecutar }
 
     expect(tarea.ciclos_completados).to eq 2
   end
@@ -57,9 +56,7 @@ describe Tarea do
     end
 
     it 'deberia tener 2 pendiente de 5 tiempos al ejecutar 3 veces' do
-      tarea.ejecutar
-      tarea.ejecutar
-      tarea.ejecutar
+      3.times { tarea.ejecutar }
 
       expect(tarea.pendiente).to eq 2
       expect(tarea.tiempo).to eq 5
@@ -79,14 +76,23 @@ describe Tarea do
       let(:tarea) { described_class.new(tiempo: 3, periodo: 3, reloj: Reloj.new) }
 
       before(:each) do
-        tarea.ejecutar
-        tarea.ejecutar
-        tarea.ejecutar
+        3.times { tarea.ejecutar }
       end
 
       it 'deberia reiniciarse actualizando los valores de inicio' do
         expect(tarea.tiempo_inicio).to eq 4
         expect(tarea.pendiente).to eq 3
+      end
+    end
+
+    describe 'al no ser ejecutable' do
+      it 'debería ser falso cuando se llama a es_ejecutable' do
+        reloj = Reloj.new
+        3.times { reloj.incrementar }
+
+        tarea = described_class.new(tiempo_inicio: 5, tiempo: 3, periodo: 5, reloj: reloj)
+
+        expect(tarea.es_ejecutable?).to eq false
       end
     end
   end

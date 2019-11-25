@@ -21,4 +21,18 @@ describe PlanificadorFIFO do
     expect(planificadorFIFO.tareas[0].ciclos_completados).to eq 2
     expect(planificadorFIFO.tareas[1].ciclos_completados).to eq 2
   end
+
+  describe 'deberia lanzar error' do
+    before(:each) do
+      tarea1 = Tarea.new(tiempo: 5, periodo: 6)
+      tarea2 = Tarea.new(tiempo: 3, periodo: 8)
+
+      planificadorFIFO.encolar(tarea1)
+      planificadorFIFO.encolar(tarea2)
+    end
+
+    it 'al ejecutar una tarea que no cumple el deadline' do
+      expect { planificadorFIFO.simular(1) }.to raise_exception TareaEjecucionError
+    end
+  end
 end

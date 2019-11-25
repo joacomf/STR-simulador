@@ -31,11 +31,15 @@ class Tarea
     unidades_de_tiempo_ejecutadas = @tiempo - @pendiente
     Logger.ejecucion(@reloj.tiempo, unidades_de_tiempo_ejecutadas, tiempo)
 
-    reiniciar if termino_periodo
+    reiniciar if termino_periodo?
   end
 
-  def termino_periodo
+  def termino_periodo?
     @pendiente.zero?
+  end
+
+  def es_ejecutable?
+    @tiempo_inicio <= @reloj.tiempo
   end
 
   def reiniciar
