@@ -1,9 +1,8 @@
-require_relative './tarea'
 require_relative './exceptions/tarea_initialize_error'
 require_relative './exceptions/tarea_ejecucion_error'
 
 class Tarea
-  attr_accessor :inicio, :tiempo, :periodo, :prioridad, :deadline, :pendiente, :reloj, :tiempo_inicio, :ciclos_completados
+  attr_accessor :tiempo, :periodo, :prioridad, :deadline, :pendiente, :reloj, :tiempo_inicio, :ciclos_completados
 
   def initialize(tiempo: 0, periodo: nil, deadline: nil, reloj: nil, tiempo_inicio: 0)
     raise TareaInitializeError, 'Deadline debe ser mayor o igual a Tiempo' if !deadline.nil? && tiempo > deadline
