@@ -23,7 +23,7 @@ class Programador
   end
 
   def simular(ejecuciones = 1)
-    ejecuciones.times.each do |_ejecuciones|
+    ejecuciones.times.each do
       @tareas.each do |tarea|
         procesar(tarea)
         @ejecutadas += 1
