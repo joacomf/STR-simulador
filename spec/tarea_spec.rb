@@ -85,6 +85,17 @@ describe Tarea do
       end
     end
 
+    describe 'al ser ejecutable' do
+      it 'debería ser verdadero cuando se llama a es_ejecutable' do
+        reloj = Reloj.new
+        3.times { reloj.incrementar }
+
+        tarea = described_class.new(tiempo_inicio: 3, tiempo: 3, periodo: 5, reloj: reloj)
+
+        expect(tarea.es_ejecutable?).to be true
+      end
+    end
+
     describe 'al no ser ejecutable' do
       it 'debería ser falso cuando se llama a es_ejecutable' do
         reloj = Reloj.new
@@ -92,7 +103,7 @@ describe Tarea do
 
         tarea = described_class.new(tiempo_inicio: 5, tiempo: 3, periodo: 5, reloj: reloj)
 
-        expect(tarea.es_ejecutable?).to eq false
+        expect(tarea.es_ejecutable?).to be false
       end
     end
   end
