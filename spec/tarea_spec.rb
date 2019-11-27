@@ -4,8 +4,9 @@ require_relative '../model/reloj'
 
 describe Tarea do
   # Tarea(tiempo, periodo, prioridad, deadline)
-  let(:reloj) {Reloj.new}
   subject(:tarea) { described_class.new(tiempo: 5, periodo: 30, deadline: 20, reloj: reloj) }
+
+  let(:reloj) { Reloj.new }
 
   it 'deberia crearse recibiendo tiempo' do
     expect(tarea.tiempo).to eq(5)
