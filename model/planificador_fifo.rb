@@ -1,4 +1,4 @@
-require_relative './programador'
+require_relative './planificador'
 
-class PlanificadorFIFO < Programador
+class PlanificadorFIFO < Planificador
 end

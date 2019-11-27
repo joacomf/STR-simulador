@@ -3,7 +3,7 @@ require_relative './tarea'
 require_relative './reloj'
 require 'pqueue'
 
-class Programador
+class Planificador
   attr_accessor :tareas, :ejecutadas, :procesador, :nop
 
   def initialize(procesador)
