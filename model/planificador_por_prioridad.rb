@@ -1,6 +1,6 @@
-require_relative './programador'
+require_relative './planificador'
 
-class PlanificadorPorPrioridad < Programador
+class PlanificadorPorPrioridad < Planificador
   def initialize(procesador)
     super(procesador)
     @tareas = []
