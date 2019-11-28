@@ -3,7 +3,6 @@ require_relative './planificador'
 class PlanificadorPorPrioridad < Planificador
   def initialize(procesador)
     super(procesador)
-    @tareas = []
   end
 
   def procesar(tarea)
