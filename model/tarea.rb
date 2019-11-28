@@ -4,7 +4,7 @@ require_relative './exceptions/tarea_ejecucion_error'
 class Tarea
   attr_accessor :tiempo, :periodo, :prioridad, :deadline, :pendiente, :reloj, :tiempo_inicio, :ciclos_completados, :nombre
 
-  def initialize(tiempo: 0, periodo:, deadline: nil, reloj:, tiempo_inicio: 0, nombre: 'unnamed')
+  def initialize(tiempo: 0, periodo:, deadline: nil, reloj:, tiempo_inicio: 0, nombre: 'unnamed', prioridad: 1)
     raise TareaInitializeError, 'Deadline debe ser mayor o igual a Tiempo' if !deadline.nil? && tiempo > deadline
     raise TareaInitializeError, 'Periodo debe ser mayor o igual a Tiempo' if !periodo.nil? && tiempo > periodo
 
@@ -15,7 +15,7 @@ class Tarea
                 else
                   deadline
                 end
-    @prioridad = 1
+    @prioridad = prioridad
     @tiempo = tiempo
     @tiempo_inicio = tiempo_inicio
     @pendiente = tiempo
