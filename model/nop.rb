@@ -1,4 +1,5 @@
 require_relative './tarea'
+require_relative './logger'
 
 class Nop < Tarea
   def initialize(reloj: nil)

@@ -1,6 +1,7 @@
 require_relative '../model/procesador'
 require_relative './tarea'
 require_relative './reloj'
+require_relative './logger'
 require 'pqueue'
 
 class Planificador
@@ -28,6 +29,7 @@ class Planificador
   def simular(max_ciclos = 200)
     @max_ciclos = max_ciclos
     procesar(siguiente_tarea) until simulacion_finalizada?
+    Logger.reiniciar
   end
 
   def tratar(ultima_ejecucion)
