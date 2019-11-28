@@ -34,7 +34,9 @@ class Planificador
     @ejecutadas += 1 if ultima_ejecucion
   end
 
-  def siguiente_tarea; end
+  def siguiente_tarea
+    @nop
+  end
 
   def criterio(tarea1, tarea2); end
 
