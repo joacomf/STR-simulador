@@ -6,14 +6,8 @@ require 'pqueue'
 class Planificador
   attr_accessor :tareas, :ejecutadas, :procesador, :nop
 
-  def initialize(procesador)
-    @tareas = PQueue.new([]) do |tarea1, tarea2|
-      if tarea1.tiempo_inicio == tarea2.tiempo_inicio
-        tarea1.deadline < tarea2.deadline
-      else
-        tarea1.tiempo_inicio < tarea2.tiempo_inicio
-      end
-    end
+  def initialize(procesador: nil, tareas: [])
+    @tareas = tareas
     @procesador = procesador
     @reloj = procesador.reloj
     @ejecutadas = 0
@@ -26,29 +20,24 @@ class Planificador
   end
 
   def procesar(tarea)
-    until tarea.es_ejecutable?
-      return if simulacion_finalizada?
-
-      @procesador.procesar(@nop)
-    end
-    tarea.tiempo.times do
-      return if simulacion_finalizada?
-
-      @procesador.procesar(tarea)
-    end
+    @procesador.procesar(tarea)
   end
 
   def simular(max_ciclos = 200)
     @max_ciclos = max_ciclos
     until simulacion_finalizada?
-      tarea = @tareas.pop
+      tarea = obtener_tarea
+      ultima_ejecucion = tarea.ultimo_periodo?
       procesar(tarea)
-      @tareas.push(tarea)
-      return if simulacion_finalizada?
-
-      @ejecutadas += 1
+      tratar(ultima_ejecucion)
     end
   end
+
+  def tratar(ultima_ejecucion)
+    @ejecutadas += 1 if ultima_ejecucion
+  end
+
+  def criterio(tarea1, tarea2); end
 
   def simulacion_finalizada?
     @max_ciclos <= @reloj.tiempo

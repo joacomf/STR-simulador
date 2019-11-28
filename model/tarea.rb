@@ -38,6 +38,10 @@ class Tarea
     @pendiente.zero?
   end
 
+  def ultimo_periodo?
+    @pendiente == 1
+  end
+
   def es_ejecutable?
     @tiempo_inicio <= @reloj.tiempo
   end
