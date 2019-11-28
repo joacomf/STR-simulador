@@ -20,16 +20,16 @@ class Planificador
   end
 
   def procesar(tarea)
+    ultima_ejecucion = tarea.ultimo_periodo?
     @procesador.procesar(tarea)
+    tratar(ultima_ejecucion)
   end
 
   def simular(max_ciclos = 200)
     @max_ciclos = max_ciclos
     until simulacion_finalizada?
       tarea = obtener_tarea
-      ultima_ejecucion = tarea.ultimo_periodo?
       procesar(tarea)
-      tratar(ultima_ejecucion)
     end
   end
 
