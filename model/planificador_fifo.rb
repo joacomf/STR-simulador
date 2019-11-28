@@ -9,7 +9,7 @@ class PlanificadorFIFO < Planificador
     super(procesador: procesador, tareas: tareas)
   end
 
-  def obtener_tarea
+  def siguiente_tarea
     tarea_seleccionada = @nop
 
     tarea = @tareas.top
