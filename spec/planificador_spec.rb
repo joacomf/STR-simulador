@@ -7,7 +7,7 @@ require_relative '../model/reloj'
 describe Planificador do
   it 'deberia crearse con un procesador' do
     procesador = Procesador.new
-    planificador = described_class.new(procesador)
+    planificador = described_class.new(procesador: procesador)
     expect(planificador.procesador).to eq procesador
   end
 
@@ -16,7 +16,7 @@ describe Planificador do
     reloj = Reloj.new
     tarea = Tarea.new(tiempo: 10, periodo: 30, deadline: 20, reloj: reloj)
 
-    planificador = described_class.new(procesador)
+    planificador = described_class.new(procesador: procesador)
 
     planificador.encolar(tarea)
 

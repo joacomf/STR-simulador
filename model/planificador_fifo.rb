@@ -5,32 +5,22 @@ class PlanificadorFIFO < Planificador
     tareas = PQueue.new([]) do |tarea1, tarea2|
       criterio(tarea1, tarea2)
     end
-    super(procesador, tareas)
+
+    super(procesador: procesador, tareas: tareas)
   end
 
-  def procesar(tarea)
-    until tarea.es_ejecutable?
-      return if simulacion_finalizada?
+  def obtener_tarea
+    tarea_seleccionada = @nop
 
-      @procesador.procesar(@nop)
-    end
-    tarea.tiempo.times do
-      return if simulacion_finalizada?
+    tarea = @tareas.top
+    tarea_seleccionada = tarea if !tarea.nil? && tarea.es_ejecutable?
 
-      @procesador.procesar(tarea)
-    end
+    tarea_seleccionada
   end
 
-  def simular(max_ciclos = 200)
-    @max_ciclos = max_ciclos
-    until simulacion_finalizada?
-      tarea = @tareas.pop
-      procesar(tarea)
-      @tareas.push(tarea)
-      return if simulacion_finalizada?
-
-      @ejecutadas += 1
-    end
+  def tratar(ultima_ejecucion)
+    super(ultima_ejecucion)
+    @tareas.push(@tareas.pop) if ultima_ejecucion
   end
 
   def criterio(tarea1, tarea2)

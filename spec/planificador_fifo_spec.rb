@@ -7,8 +7,10 @@ describe PlanificadorFIFO do
   it 'debe ejecutar 1 vez las 2 tareas en un ciclo' do
     procesador = Procesador.new
     planificador_fifo = described_class.new(procesador)
+
     tarea1 = Tarea.new(tiempo: 5, periodo: 10, reloj: procesador.reloj, nombre: 'tarea1')
     tarea2 = Tarea.new(tiempo: 3, periodo: 15, reloj: procesador.reloj, nombre: 'tarea2')
+
     planificador_fifo.encolar(tarea1)
     planificador_fifo.encolar(tarea2)
     planificador_fifo.simular(9)
