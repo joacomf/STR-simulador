@@ -27,15 +27,14 @@ class Planificador
 
   def simular(max_ciclos = 200)
     @max_ciclos = max_ciclos
-    until simulacion_finalizada?
-      tarea = obtener_tarea
-      procesar(tarea)
-    end
+    procesar(siguiente_tarea) until simulacion_finalizada?
   end
 
   def tratar(ultima_ejecucion)
     @ejecutadas += 1 if ultima_ejecucion
   end
+
+  def siguiente_tarea; end
 
   def criterio(tarea1, tarea2); end
 
