@@ -38,6 +38,7 @@ En el directorio del proyecto, ejecutar:
 Cuando se necesite ejecutar los tests. Con la máquina virtual levantada:
 Si no estoy dentro de la máquina virtual:
  - vagrant ssh
+
 Dentro de la máquina virtual:
  1. cd /vagrant
  2. rake ó ./build.sh
