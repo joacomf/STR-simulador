@@ -4,7 +4,7 @@ require 'time'
 
 class Logger
   @registros = []
-  RUTA = './resultados/'.freeze
+  RUTA = __dir__ + '/../resultados/'.freeze
 
   class << self
     attr_reader :registros
@@ -27,7 +27,10 @@ class Logger
   end
 
   def self.reiniciar
-    File.open(RUTA + (Time.now.to_f * 1000.0).to_i.to_s + '.json', 'w+') do |f|
+    tiempo_ms = (Time.now.to_f * 1000.0).to_i.to_s
+    ruta = RUTA + tiempo_ms + '.json'
+
+    File.open(ruta, 'w+') do |f|
       f.write({ registros: @registros }.to_json)
     end
 
