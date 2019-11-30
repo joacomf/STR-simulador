@@ -133,4 +133,21 @@ describe PlanificadorFIFO do
       expect(planificador.ejecutadas).to eq 71
     end
   end
+
+  describe 'demostracion de planificador fifo con 50 ciclos' do
+    it 'deberia tener 71 tareas procesadas' do
+      procesador = Procesador.new
+      planificador = described_class.new(procesador)
+
+      tarea_a = Tarea.new(tiempo_inicio: 0, tiempo: 10, periodo: 15, deadline: 11, nombre: 'demo2_tarea_a')
+      tarea_b = Tarea.new(tiempo_inicio: 11, tiempo: 5, periodo: 15, deadline: 17, nombre: 'demo2_tarea_b')
+
+      planificador.encolar(tarea_a)
+      planificador.encolar(tarea_b)
+
+      planificador.simular(50)
+
+      expect(planificador.ejecutadas).to eq 7
+    end
+  end
 end
