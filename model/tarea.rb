@@ -1,5 +1,5 @@
-require_relative './exceptions/tarea_initialize_error'
-require_relative './exceptions/tarea_ejecucion_error'
+require_relative './exceptions/deadline_alcanzado_error'
+require_relative './exceptions/tarea_ya_finalizada_error'
 
 class Tarea
   attr_accessor :tiempo, :periodo, :prioridad, :deadline, :pendiente, :reloj, :tiempo_inicio, :ciclos_completados, :nombre
@@ -24,8 +24,8 @@ class Tarea
   end
 
   def ejecutar
-    raise TareaEjecucionError, "Tarea  ##{@nombre} finalizada, no se puede ejecutar" if @pendiente.zero?
-    raise TareaEjecucionError, "La tarea ##{@nombre} llego al Deadline, no se puede ejecutar" if @deadline <= @reloj.tiempo
+    raise TareaYaFinalizadaError.new("Tarea  ##{@nombre} finalizada, no se puede ejecutar", true) if @pendiente.zero?
+    raise DeadlineAlcanzadoError.new("La tarea ##{@nombre} llego al Deadline, no se puede ejecutar", true) if @deadline <= @reloj.tiempo
 
     @pendiente -= 1
     unidades_de_tiempo_ejecutadas = @tiempo - @pendiente

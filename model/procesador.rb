@@ -1,5 +1,6 @@
 require_relative './tarea'
 require_relative './reloj'
+require_relative './exceptions/deadline_alcanzado_error'
 
 class Procesador
   attr_accessor :reloj
@@ -9,7 +10,12 @@ class Procesador
   end
 
   def procesar(tarea)
-    tarea.ejecutar
+    begin
+      tarea.ejecutar
+    rescue DeadlineAlcanzadoError
+      tarea.reiniciar
+      raise DeadlineAlcanzadoError
+    end
     @reloj.incrementar
   end
 end

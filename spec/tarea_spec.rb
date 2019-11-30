@@ -1,6 +1,9 @@
 require 'rspec'
 require_relative '../model/tarea'
 require_relative '../model/reloj'
+require_relative '../model/exceptions/tarea_initialize_error'
+require_relative '../model/exceptions/deadline_alcanzado_error'
+require_relative '../model/exceptions/tarea_ya_finalizada_error'
 
 describe Tarea do
   # Tarea(tiempo, periodo, prioridad, deadline)
@@ -66,12 +69,12 @@ describe Tarea do
 
     it 'deberia esperar una excepcion si se ejecuta una tarea que llego al deadline' do
       tarea.reloj = Reloj.new(20)
-      expect { tarea.ejecutar }.to raise_exception TareaEjecucionError
+      expect { tarea.ejecutar }.to raise_exception DeadlineAlcanzadoError
     end
 
     it 'deberia esperar una excepcion si se ejecuta una tarea terminada' do
       tarea.pendiente = 0
-      expect { tarea.ejecutar }.to raise_exception TareaEjecucionError
+      expect { tarea.ejecutar }.to raise_exception TareaYaFinalizadaError
     end
 
     describe 'al finalizar de ejecutarse' do

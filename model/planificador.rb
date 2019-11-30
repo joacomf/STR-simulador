@@ -2,6 +2,7 @@ require_relative '../model/procesador'
 require_relative './tarea'
 require_relative './reloj'
 require_relative './logger'
+require_relative './exceptions/deadline_alcanzado_error'
 require 'pqueue'
 
 class Planificador
@@ -22,7 +23,11 @@ class Planificador
 
   def procesar(tarea)
     ultima_ejecucion = tarea.ultimo_periodo?
-    @procesador.procesar(tarea)
+    begin
+      @procesador.procesar(tarea)
+    rescue DeadlineAlcanzadoError
+      ultima_ejecucion = true
+    end
     tratar(ultima_ejecucion)
   end
 

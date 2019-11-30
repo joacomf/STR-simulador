@@ -1,4 +1,5 @@
 require_relative './registro_log'
+require_relative './registro_log_excepcion'
 require 'json'
 require 'time'
 
@@ -16,6 +17,11 @@ class Logger
                                   ejecuciones_totales: ejecuciones_totales,
                                   numero_tarea: numero_tarea)
     puts "Tiempo #{tiempo_actual}. Ejecución de #{ejecucion_actual} de tarea ##{numero_tarea}. Total #{ejecuciones_totales}"
+  end
+
+  def self.excepcion(mensaje)
+    @registros << RegistroLogException.new(mensaje)
+    puts mensaje
   end
 
   def self.nop(tiempo_actual)

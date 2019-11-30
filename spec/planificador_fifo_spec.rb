@@ -2,6 +2,7 @@ require 'rspec'
 require_relative '../model/planificador_fifo'
 require_relative '../model/procesador'
 require_relative '../model/tarea'
+require_relative '../model/exceptions/deadline_alcanzado_error'
 
 describe PlanificadorFIFO do
   it 'debe ejecutar 1 vez las 2 tareas en un ciclo' do
@@ -44,10 +45,12 @@ describe PlanificadorFIFO do
 
       planificador_fifo = described_class.new(procesador)
 
+      expect(procesador).to receive(:procesar).and_raise(DeadlineAlcanzadoError.new).at_least(1).time.and_call_original
+
       planificador_fifo.encolar(tarea1)
       planificador_fifo.encolar(tarea2)
 
-      expect { planificador_fifo.simular(10) }.to raise_exception TareaEjecucionError
+      planificador_fifo.simular(10)
     end
   end
 
