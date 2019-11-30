@@ -1,11 +1,25 @@
 # STR-simulador [![Build Status](https://travis-ci.com/joacomf/STR-simulador.svg?branch=master)](https://travis-ci.com/joacomf/STR-simulador)
 
-## Tareas
-1. Periodo
-2. Computo
-3. Deadline
-4. Prioridad
-5. Inicio
+## Objetivo
+Se requiere crear un simulador de tareas de tiempo real el cual prediga el comportamiento de un sistema de tiempo real según la definición de la configuración de las tareas periódicas de tiempo real del sistema.
+
+## Alcance
+- El alcance del proyecto está definido por:
+- Procesador único
+- Cantidad de tareas indefinida mayores a uno
+- Todas las tareas son periódicas
+- Configuración de las tareas:
+    - Tiempo de inicio
+    - Tiempo de proceso
+    - Tiempo máximo de fin de proceso (deadline)
+    - Prioridad
+    - Periodo
+    - Nombre
+    - Planificadores
+    - Procesamiento FIFO
+    - Procesamiento por prioridad
+- Obtención de resultados mediante archivo con formato JSON
+
 
 ## Instalación
 Este trabajo práctico tiene su propia máquina virtual configurada.
