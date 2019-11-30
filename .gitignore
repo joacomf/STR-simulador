@@ -15,7 +15,7 @@
 .repl_history
 build/
 
-resultados/
+resultados/*
 
 ## Documentation cache and generated files:
 /.yardoc/
