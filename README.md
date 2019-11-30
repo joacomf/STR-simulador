@@ -1,4 +1,4 @@
-# STR-simulador
+# STR-simulador [![Build Status](https://travis-ci.com/joacomf/STR-simulador.svg?branch=master)](https://travis-ci.com/joacomf/STR-simulador)
 
 ## Tareas
 1. Periodo
